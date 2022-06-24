@@ -1,0 +1,23 @@
+{
+  "name": "testspace.testit",
+  "version": "1.0.0",
+  "description": "The concept is to define specs and corresponding test case status using an excel spreadsheet. A GitHub Workflow is used to generate the specs, push them to a branch, and then execute session(s) using the defined status.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/munderseth/testspace.testit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/munderseth/testspace.testit/issues"
+  },
+  "homepage": "https://github.com/munderseth/testspace.testit#readme",
+  "dependencies": {
+    "@s2technologies/testspace.test.functions": "^8.0.0"
+  }
+}
