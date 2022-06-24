@@ -1,0 +1,26 @@
+name: Testit
+on:
+  workflow_dispatch:
+    inputs:
+      sheet:
+        default: 'testit.xlsx'
+        description: 'Defaults to testit.xlsx'
+      branch:
+        default: 'testit'
+        description: 'Default branch to generate'
+jobs:
+  specs:
+    uses: ./.github/workflows/specs.yml
+    with:
+      sheet: ${{ inputs.sheet }}
+      branch: ${{ inputs.branch}}
+  sessions:
+    needs: specs
+    uses: ./.github/workflows/sessions.yml
+    with:
+      branch: ${{ inputs.branch}}
+    secrets:
+      GH_PAT_FOR_TF:  ${{ secrets.GH_PAT_FOR_TF }}
+      TESTSPACE_CRED: ${{ secrets.TESTSPACE_CRED }}
+
+   

@@ -1,0 +1,4 @@
+node_modules
+# Jekyll local building artifacts
+_site
+.jekyll-cache

@@ -1,0 +1,5 @@
+manual:
+  issues:
+    provider: "github:disable/issues" # bad config, hack to disable 
+release:
+  - "*"

@@ -1,0 +1,40 @@
+name: Session
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        default: 'testit'
+        description: 'Default branch to generate'
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+    secrets:
+      TESTSPACE_CRED:
+        required: true
+      GH_PAT_FOR_TF:
+        required: true
+env:
+  TESTSPACE_CRED: ${{ secrets.TESTSPACE_CRED }}
+  GH_PAT_FOR_TF:  ${{ secrets.GH_PAT_FOR_TF }}
+  GHORG:          ${{ github.repository_owner }}
+  REPO:           ${{ github.repository }}
+
+jobs:
+  sessions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DEBUG
+        run: |
+          echo ${{ inputs.branch }}
+      - uses: actions/checkout@v3
+        with: 
+          ref: ${{ inputs.branch }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+      - name: Package Install
+        run:  npm install
+      - name: RUN SESSIONS
+        run: node run.sessions.js ${{ inputs.branch}} specs/allSessions.json
