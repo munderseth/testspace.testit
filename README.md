@@ -78,8 +78,10 @@ export TESTSPACE_CRED="USERNAME:PASSWORD"  # powershell $env:TESTSPACE_CRED="USE
 export headless_chrome="false"
 export GHORG="NAME" # munderseth or s2testorg
 export REPO="GHORG/BRANCH" # munderseth/test
-node run.sessions.js BRANCH-NAME allSessions.json  # node run.sessions.js testit specs/allSessions.js
+node run.sessions.js BRANCH-NAME allSessions.json  # node run.sessions.js testit specs/allSessions.json
 ```
+
+Note, don't forget to make sure that the repo has access to the `TESTSPACE_CRED` secret. Refer to *personal* [Codespaces settings](https://github.com/settings/codespaces).
 
 ### Initial Setup
 
@@ -117,7 +119,8 @@ python -m ipykernel install --user --name=testspace.testit
 
 
 #### Javascript 
-Note, don't forget to make sure that the repo has access to the `GH_PAT_FOR_TF` secret.
+Note, don't forget to make sure that the repo has access to the `GH_PAT_FOR_TF` secret. Refer to *personal* [Codespaces settings](https://github.com/settings/codespaces).
+
 
 - `npm init --yes`
 - create `.npmrc` file at root
