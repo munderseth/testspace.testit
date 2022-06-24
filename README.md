@@ -5,7 +5,7 @@ The concept is to define specs and corresponding test case status using an excel
 This repo is a template to be used on the `s2testorg`. All credentials (secrets) have been set up.  
 
 1. Create a new repo on [s2testorg](https://github.com/s2testorg) using this repo.
-2. Create a new project using the repo on [s2testorg](https://s2testorg.stridespace.com/)
+2. Create a new project using the repo on [s2testorg](https://s2testorg.stridespace.com/). **NOTE** make the repo `public`, otherwise the `secrets` will not be defined. Rrequires a *Team* account for private org level secrets.  
 3. Run the **`testit`** workflow manually
 
 > Important note. Specs generated are always commited to a **branch**, and will overwrite any existing specs if the branch already exists. The default branch used is *testit*.
