@@ -142,21 +142,25 @@ def theSpecs(sheet_df, group_name, file_path):
     
     return specs
     
-def theGroup(sheet_name):
+def theGroup(sheet_name, totalGroups):
     SPECS_PATH = "./specs/"
-    file_path = SPECS_PATH+sheet_name
+    if totalGroups > 1:
+        file_path = SPECS_PATH+sheet_name
+    else:
+        file_path = SPECS_PATH
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
     # Creating a Group index to support "Sections" in Jekyll using "Just the Docs" theme
-    file_name = file_path+"/"+"index"
-    f = getFile(file_name)
-    f.write("---\n")
-    f.write("layout: default\n")
-    f.write("title: ")
-    f.write(sheet_name+"\n")
-    f.write("has_children: true\n")
-    f.write("---\n")
+    if totalGroups > 1:
+        file_name = file_path+"/"+"index"
+        f = getFile(file_name)
+        f.write("---\n")
+        f.write("layout: default\n")
+        f.write("title: ")
+        f.write(sheet_name+"\n")
+        f.write("has_children: true\n")
+        f.write("---\n")
 
     return file_path
 
@@ -177,11 +181,10 @@ def generateSpecs(specdata):
     # Read the list of Sheets (tabs)
     testdata_file = specdata
     xls = pd.ExcelFile(testdata_file)
-    numOfGroups = 0 # len(xls.sheet_names)
+    numOfGroups = len(xls.sheet_names)
     for sheet_name in xls.sheet_names:
-        numOfGroups = numOfGroups + 1
         sheet_df  = cleanSheetData(testdata_file, sheet_name)
-        file_path = theGroup(sheet_name)
+        file_path = theGroup(sheet_name, numOfGroups)
         print("processing sheet:", sheet_name, numOfGroups)
 
         passing  = sheet_df['Status'].eq('Passed').sum()
@@ -201,7 +204,9 @@ def generateSpecs(specdata):
         # Session JSON files; 1 per group
         session = []
         sessionDict = {}
-        sessionDict["group"]    = sheet_name
+        group = sheet_name
+        if numOfGroups == 1: group = "·Overall·"
+        sessionDict["group"]    = group
         sessionDict["name"]     = sheet_name+".session.01"
         sessionDict["cases"]    = int(cases)
         sessionDict["passing"]  = int(passing)
@@ -263,7 +268,8 @@ def specStats():
 # ## Run
 
 # %%
-generateSpecs(sys.argv[1])
+sheet = sys.argv[1]
+generateSpecs(sheet)
 specStats()
 
 
