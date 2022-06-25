@@ -1,4 +1,4 @@
-name: Session
+name: Sessions
 on:
   workflow_dispatch:
     inputs:

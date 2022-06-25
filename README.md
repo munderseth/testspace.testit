@@ -87,14 +87,17 @@ git push origin testit
 
 To run sessions:
 
+Onetime setup:
 ```
-export TESTSPACE_CRED="USERNAME:PASSWORD"  # powershell $env:TESTSPACE_CRED="USERNAME:PASSWORD"
-export headless_chrome="false"
+export TESTSPACE_CRED="USERNAME:PASSWORD"  # Using super admins credentials 
+export headless_chrome="false"  # not working in Codespaces
 ```
+Project setup:
 ```
 export GHORG="NAME" # munderseth or s2testorg
 export REPO="GHORG/BRANCH" # munderseth/test
 ```
+To run session(s):
 ```
 node run.sessions.js BRANCH-NAME specs/allSessions.json  # node run.sessions.js testit specs/allSessions.json
 ```
