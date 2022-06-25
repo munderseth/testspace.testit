@@ -268,7 +268,7 @@ def specStats():
 # ## Run
 
 # %%
-sheet = 'testit.xlsx' # sys.argv[1]
+sheet = sys.argv[1]
 generateSpecs(sheet)
 specStats()
 
