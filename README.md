@@ -1,14 +1,23 @@
 # testspace.testit
-The concept is to define specs and corresponding test case status using an excel spreadsheet. A GitHub Workflow is used to generate the specs, push them to a branch, and then execute session(s) using the defined status. 
+The concept is to define **specs**, **test cases**, and **status** using an excel spreadsheet. A GitHub Workflow is used to generate the specs, push them to a branch, and then execute session(s) using the defined status. 
+								
+Spec|Spec Description | Tag	|Case 	|Case Description| Steps   | Status | Comments
+----|-----------------|-----|-------|----------------|---------|--------|--------
+One | This is a spec  | t1	|case 1 | Do something   | do this | P	    | 
+One |                 | t1	|case 2 | Do something   | do that | F	    | this is a comment
+
+Multiple **tabs** within the excel spreadsheet will be represented as groups in Testspace. 
 
 ## Basic Usage
-This repo is a template to be used on the `s2testorg`. All credentials (secrets) have been set up.  
+This repo is a `template` to be used on the `s2testorg`. All credentials (secrets) have been set up - `TESTSPACE_CRED` and `GH_PAT_FOR_TF`.  
 
 1. Create a new repo on [s2testorg](https://github.com/s2testorg) using this repo.
-2. Create a new project using the repo on [s2testorg](https://s2testorg.stridespace.com/). **NOTE** make the repo `public`, otherwise the `secrets` will not be defined. Rrequires a *Team* account for private org level secrets.  
-3. Run the **`testit`** workflow manually
+2. Create a new project using the repo on [s2testorg](https://s2testorg.stridespace.com/). 
+3. Run the **`testit`** workflow manually.
 
-> Important note. Specs generated are always commited to a **branch**, and will overwrite any existing specs if the branch already exists. The default branch used is *testit*.
+**NOTES**:
+- Make the new repo **public**, otherwise, the `secrets` will not be defined, a *Team* account is required for private org level secrets.  
+- Specs generated are always committed to a **branch** and will overwrite any existing specs if the branch already exists. The default branch used is *testit*. You can also create new branches. 
 
 ### Changes
 It is simple to create new specs.
@@ -33,14 +42,19 @@ The following tools have been used in developing this utility:
 
 ### Excelsheet 
 The following is an overview of the sheet format:
-								
-Spec|Spec Description | Tag	|Case	|Case Description| Steps - | Status | Comments
+							
+Spec|Spec Description | Tag	|Case 	|Case Description| Steps   | Status | Comments
 ----|-----------------|-----|-------|----------------|---------|--------|--------
-One| This is a spec   | t1	|case 1 | Do something   | do this | P	    | my first comment
+One | This is a spec  | t1	|case 1 | Do something   | do this | P	    | 
+One |                 | t1	|case 2 | Do something   | do that | F	    | this is a comment
+Two | Another spec    | t2  |case 1 | Basic stuff    | check it |       | 
+		
 
 - For multiple cases repeat the Spec name
 - Use new line in cel for `Steps` and `Comments`
-- Each `Tab` represents a group
+- Status: `P | p`, `F | f`, `N | n` (NA)
+- Status left `blank` is mapped to `Untested`
+- Each `Tab` represents a group, if there is more than 1 tab
 
 ### Setup
 
@@ -76,9 +90,13 @@ To run sessions:
 ```
 export TESTSPACE_CRED="USERNAME:PASSWORD"  # powershell $env:TESTSPACE_CRED="USERNAME:PASSWORD"
 export headless_chrome="false"
+```
+```
 export GHORG="NAME" # munderseth or s2testorg
 export REPO="GHORG/BRANCH" # munderseth/test
-node run.sessions.js BRANCH-NAME allSessions.json  # node run.sessions.js testit specs/allSessions.json
+```
+```
+node run.sessions.js BRANCH-NAME specs/allSessions.json  # node run.sessions.js testit specs/allSessions.json
 ```
 
 Note, don't forget to make sure that the repo has access to the `TESTSPACE_CRED` secret. Refer to *personal* [Codespaces settings](https://github.com/settings/codespaces).
