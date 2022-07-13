@@ -79,7 +79,7 @@ To generate Specs for a **branch**:
 
 ```
 git checkout -b testit
-python generateSpecs.py
+python generateSpecs.py testit.xlsx
 git add .
 git commit -m "auto-gen specs"
 git push origin testit
