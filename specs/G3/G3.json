@@ -1,0 +1,51 @@
+[
+    {
+        "cases": 4,
+        "failing": 1,
+        "group": "G3",
+        "na": 1,
+        "name": "G3.session.01",
+        "passing": 2,
+        "specs": [
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Failed"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 2",
+                        "status": "Not Applicable"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 3",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "Five"
+            },
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "Six"
+            }
+        ],
+        "untested": 0
+    }
+]
