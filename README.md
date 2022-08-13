@@ -79,7 +79,7 @@ To generate Specs for a **branch**:
 
 ```
 git checkout -b testit
-python generateSpecs.py testit.xlsx
+python generate.specs.py testit.xlsx
 git add .
 git commit -m "auto-gen specs"
 git push origin testit
@@ -94,8 +94,8 @@ export headless_chrome="false"  # not working in Codespaces
 ```
 Project setup:
 ```
-export GHORG="NAME" # munderseth or s2testorg
-export REPO="GHORG/BRANCH" # munderseth/test
+export GHORG="NAME"        # export GHORG=munderseth or s2testorg
+export REPO="GHORG/BRANCH" # export REPO=munderseth/testspace.testit/testit
 ```
 To run session(s):
 ```
