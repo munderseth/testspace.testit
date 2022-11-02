@@ -17,10 +17,16 @@ var project        = ghorg+":"+repo[1]; // 2nd part required
 
 console.log("URL & Project", testspace_url, project);
 
-async function main() {  
-    await tf.projectNewSessions(testspace_url,testspace_user, testspace_pass, project, branch, sessions);
-}
+async function main() {
+    try{  
+        await tf.projectNewSessions(testspace_url,testspace_user, testspace_pass, project, branch, sessions);
+    } catch(err){
+        console.log('Problem has occured!');
+        console.log(err);
+        process.exit(1);
+    }
 
+}
 main();
 
 
