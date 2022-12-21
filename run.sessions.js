@@ -1,31 +1,38 @@
-var tf = require('@s2technologies/testspace.test.functions')
-var fs = require('fs');
+const ts = require('@s2technologies/testspace.test.functions');
+const fs = require('fs');
 
 console.log("Args:", process.argv[2], process.argv[3])
 
 var branch         = process.argv[2]
 var sessions       = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
 
-var testspace_cred = process.env.TESTSPACE_CRED.split(':');
-var ghorg          = process.env.GHORG 
-var repo           = process.env.REPO.split('/')
+ts.setCreds(process.env.GH_PAT_FOR_TF, process.env.TESTSPACE_CRED);
 
-var testspace_user = testspace_cred[0];
-var testspace_pass = testspace_cred[1]; 
+var repo           = process.env.REPO;
+var ghorg          = process.env.GHORG;
+var template       = ghorg+"/"+repo+"/"+branch;
 var testspace_url  = "https://"+ghorg+".stridespace.com";
-var project        = ghorg+":"+repo[1]; // 2nd part required
 
-console.log("URL & Project", testspace_url, project);
+var project = {
+    repo: repo,
+    repoOrg: ghorg, 
+    repoTemplate: template,  // the template "branch" defines the active Space
+    url: testspace_url,
+}
+
+const testHandle = ts.setProject(project);
 
 async function main() {
     try{  
-        await tf.projectNewSessions(testspace_url,testspace_user, testspace_pass, project, branch, sessions);
+        await ts.startPuppet();
+        await ts.login(testHandle);
+        await ts.runSessions(testHandle, sessions, true);
+        await ts.closePuppet();
     } catch(err){
         console.log('Problem has occured!');
         console.log(err);
         process.exit(1);
     }
-
 }
 main();
 
