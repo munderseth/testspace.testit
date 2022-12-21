@@ -19,7 +19,7 @@ env:
   TESTSPACE_CRED: ${{ secrets.TESTSPACE_CRED }}
   GH_PAT_FOR_TF:  ${{ secrets.GH_PAT_FOR_TF }}
   GHORG:          ${{ github.repository_owner }}
-  REPO:           ${{ github.ref_name }}
+  REPO:           ${{ github.event.repository.name }}
 
 jobs:
   sessions:
