@@ -90,12 +90,12 @@ To run sessions:
 Onetime setup:
 ```
 export TESTSPACE_CRED="USERNAME:PASSWORD"  # Using super admins credentials 
-export headless_chrome="false"  # not working in Codespaces
+export HEADLESS=false  # not working in Codespaces
 ```
 Project setup:
 ```
-export GHORG="NAME"        # export GHORG=munderseth or s2testorg
-export REPO="GHORG/BRANCH" # export REPO=munderseth/testspace.testit/testit
+export GHORG="NAME"      # export GHORG=munderseth or s2testorg
+export REPO="REF_NAME"   # export REPO=testspace.testit
 ```
 To run session(s):
 ```
@@ -110,7 +110,7 @@ Create a `.testspace.yml` file:
 ```
 manual:
   issues:
-    provider: "github:disable/issues" # bad config, hack to disable 
+    provider: generic 
 release:
   - "*"
 ```

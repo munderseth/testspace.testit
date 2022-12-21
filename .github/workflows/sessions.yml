@@ -19,7 +19,7 @@ env:
   TESTSPACE_CRED: ${{ secrets.TESTSPACE_CRED }}
   GH_PAT_FOR_TF:  ${{ secrets.GH_PAT_FOR_TF }}
   GHORG:          ${{ github.repository_owner }}
-  REPO:           ${{ github.repository }}
+  REPO:           ${{ github.event.repository.name }}
 
 jobs:
   sessions:
@@ -31,10 +31,6 @@ jobs:
       - uses: actions/checkout@v3
         with: 
           ref: ${{ inputs.branch }}
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '12'
-      - name: Package Install
-        run:  npm install
+      - run: npm install @s2technologies/testspace.test.functions
       - name: RUN SESSIONS
         run: node run.sessions.js ${{ inputs.branch}} specs/allSessions.json

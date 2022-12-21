@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/munderseth/testspace.testit#readme",
   "dependencies": {
-    "@s2technologies/testspace.test.functions": "^8.0.3",
-    "puppeteer": "^16.1.0"
+    "@s2technologies/testspace.test.functions": "^9.0.1"
   }
 }
