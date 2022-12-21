@@ -94,8 +94,8 @@ export HEADLESS=false  # not working in Codespaces
 ```
 Project setup:
 ```
-export GHORG="NAME"      # export GHORG=munderseth or s2testorg
-export REPO="REF_NAME"   # export REPO=testspace.testit
+export GHORG="NAME"  # export GHORG=munderseth or s2testorg
+export REPO="NAME"   # export REPO=testspace.testit
 ```
 To run session(s):
 ```
