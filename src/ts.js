@@ -335,7 +335,7 @@ module.exports = {
 async function repoCheckExist(octokit, org, repoMatch)
 {
     // TEMP HACK: support local testing
-    var list;
+    var repos;
 
     if (org == "munderseth") {
         const { data: response1 } = await octokit.repos.listForAuthenticatedUser({
@@ -344,7 +344,7 @@ async function repoCheckExist(octokit, org, repoMatch)
             per_page: 100,
             page: 1,
         });
-        list = response1;
+        repos = response1;
     } else {
         const { data: response2 } = await octokit.repos.listForOrg({
             org: org,
@@ -352,13 +352,11 @@ async function repoCheckExist(octokit, org, repoMatch)
             per_page: 100,
             page: 1,
         });
-        list = response2;
+        repos = response2;
     }
 
-    var i = 0;
-    while (list[i]) {
-        if (list[i].name == repoMatch) return true;
-        i++;
+    for (var repo of repos) {
+        if ( repo.name == repoMatch) return true;
     }
     return false;
 }
@@ -443,19 +441,17 @@ async function projectCheckExist(testspace_url, user, pass, projectMatch) {
         json: true
     };
 
-    await request(options, (err, res, body) => {
+    await request(options, (err, res, projects) => {
         if (err) {
             console.debug(err);
             return;
         }
         status = false;
-        var i=0;
-        while (body[i]) {
-            if (body[i].name == projectMatch) {
+        for (var project of projects) {
+            if (project.name == projectMatch) {
                 status = true;
                 break;
             }
-            i++;
         }
 
     });
@@ -529,8 +525,6 @@ async function projectGotoListing(page, testspace_url, project, space, group) {
 
 async function projectRunSessions(page, testspace_url, user, pass, project, space, sessions, check=true) {
 
-    projectLogSessions(sessions);
-
     for (var session of sessions) {
         console.log("Sess  ... [start]", "Name:", session.name, "Group:", session.group);
         await projectGotoListing(page, testspace_url, project, space, session.group);
@@ -576,10 +570,7 @@ async function projectCompleteSession(page, sessionName) {
 }
 
 async function projectRunSpecs(page, specs) {
-    var j = 0;
-    while (specs[j]) {
-        var spec = specs[j];
-        j++;
+    for (var spec of specs) {
         await projectRunSpec(page, spec.name, spec.cases, false, spec.fixture);
         await projectStopSpec(page, spec.name);
     }
@@ -628,15 +619,12 @@ async function projectStopSpec(page, specName) {
 // Note, this routine is "not" robust, very timing dependent
 async function projectRunCases(page, cases) {
 
-    var k = 0;
-    while (cases[k]) {
-        var testcase = cases[k];
+    for (var testcase of cases) {
         console.log("Case  ... [run  ]", testcase.name, "=", testcase.status);
         // Selector uses "span" element with "title" = case name
         var caseTab = await page.waitForSelector('span[title='+'"'+testcase.name+'"'+']', {visible: true });
         await caseTab.click();
-        await projectSetCaseStatus(page, testcase, k);
-        k++;
+        await projectSetCaseStatus(page, testcase);
     }
 }
 
@@ -722,23 +710,3 @@ async function sessionCaseCountsCheck(page, testspace_url, user, pass, project, 
     console.log("Sess  ... [check]", name, "Expected:",session_case_counts_tracking , "Received:", session_case_counts);
 }
 
-function projectLogSessions(sessions) {
-
-    var i = 0;
-    while (sessions[i]) {
-        var session = sessions[i];
-        //console.debug("Listing:", session.listing, "Session:", session.name);
-        i++;
-        var j = 0;
-        while (session.specs[j]) {
-            var suite = session.specs[j];
-            //console.debug("Spec:", spec.name);
-            j++;
-            var k = 0;
-            while (suite.cases[k]) {
-                //console.debug("Case:", suite.cases[k]);
-                k++;
-            }
-        }
-    }
-}
