@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/munderseth/testspace.testit#readme",
   "dependencies": {
-    "@s2technologies/testspace.test.functions": "^9.1.1"
+    "@octokit/rest": "^19.0.7",
+    "puppeteer": "^19.7.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }

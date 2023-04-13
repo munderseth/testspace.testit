@@ -38,7 +38,6 @@ The following tools have been used in developing this utility:
     - [Reusable Workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) - used separate workflows 
     - [Git Auto Commit Action](https://github.com/stefanzweifel/git-auto-commit-action) - commiting generated specs
 - [GitHub Codespaces](https://github.com/features/codespaces) - Just because I wanted to learn about it
-- [GitHub Packages](https://github.com/features/packages) - Again, just because
 
 ### Excelsheet 
 The following is an overview of the sheet format:
@@ -144,12 +143,13 @@ Note, don't forget to make sure that the repo has access to the `GH_PAT_FOR_TF` 
 
 
 - `npm init --yes`
-- create `.npmrc` file at root
-    ```
-    @s2technologies:registry=https://npm.pkg.github.com
-    //npm.pkg.github.com/:_authToken=${GH_PAT_FOR_TF}
-    ```
-- Install latest version - for example:
-  ```
-  npm install @s2technologies/testspace.test.functions
-  ```
+
+Production packages required for the `/src/ts.js` module.
+```
+npm install request
+npm install request-promise
+npm install @octokit/rest
+npm install puppeteer
+```
+
+Note. Using `ts.js` from https://github.com/s2technologies/testspace.test

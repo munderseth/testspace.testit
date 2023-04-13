@@ -1,4 +1,4 @@
-const ts = require('@s2technologies/testspace.test.functions');
+const ts = require('./src/ts');
 const fs = require('fs');
 
 console.log("Args:", process.argv[2], process.argv[3])
