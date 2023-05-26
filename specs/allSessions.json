@@ -1,0 +1,133 @@
+[
+    {
+        "cases": 1,
+        "failing": 0,
+        "group": "G1",
+        "na": 0,
+        "name": "G1.session.01",
+        "passing": 1,
+        "specs": [
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "g1.1One"
+            }
+        ],
+        "untested": 0
+    },
+    {
+        "cases": 3,
+        "failing": 0,
+        "group": "G2",
+        "na": 0,
+        "name": "G2.session.01",
+        "passing": 2,
+        "specs": [
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "g2.1One"
+            },
+            {
+                "cases": [
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 2",
+                        "status": "Untested"
+                    }
+                ],
+                "name": "g2.2Two"
+            }
+        ],
+        "untested": 1
+    },
+    {
+        "cases": 6,
+        "failing": 1,
+        "group": "G3",
+        "na": 1,
+        "name": "G3.session.01",
+        "passing": 4,
+        "specs": [
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "g3.1One"
+            },
+            {
+                "cases": [
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 2",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "g3.2Two"
+            },
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 2",
+                        "status": "Failed"
+                    },
+                    {
+                        "comments": [],
+                        "defect": false,
+                        "name": "case 3",
+                        "status": "Not Applicable"
+                    }
+                ],
+                "name": "g3.3Three"
+            }
+        ],
+        "untested": 0
+    }
+]
