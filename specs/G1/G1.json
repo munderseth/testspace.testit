@@ -1,0 +1,26 @@
+[
+    {
+        "cases": 1,
+        "failing": 0,
+        "group": "G1",
+        "na": 0,
+        "name": "G1.session.01",
+        "passing": 1,
+        "specs": [
+            {
+                "cases": [
+                    {
+                        "comments": [
+                            "my first comment\nmy second comment"
+                        ],
+                        "defect": false,
+                        "name": "case 1",
+                        "status": "Passed"
+                    }
+                ],
+                "name": "g1.1One"
+            }
+        ],
+        "untested": 0
+    }
+]
